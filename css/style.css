@@ -2,9 +2,22 @@
     --secondary: #ccc;
 }
 
+* {
+    font-family: Arial;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: 45rem;
+}
+
+header {
+    text-align: center;
+}
+
 .grid-container {
     height: 45rem;
-    width: 45rem;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(16, 1fr);
@@ -16,6 +29,27 @@
     background-color: #fff;
 }
 
+.options-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.buttons button {
+    margin: 0.7rem;
+    background-color: #e7e7e7; 
+    color: black;
+    border: black 0.1rem solid;
+    text-decoration: none;
+    padding: 0.5rem 1.5rem;
+}
+
+.radios {
+    align-self: center;
+}
+
+/*
 .grid-cell:hover {
     background-color: #FFDE00;
 }
+*/

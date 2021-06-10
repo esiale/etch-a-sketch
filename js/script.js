@@ -10,6 +10,7 @@ function createGrid(number) {
     gridContainer.appendChild(gridCell);
     gridCell.classList.add("grid-cell");
     gridCell.addEventListener("click", activateSketch);
+    gridCell.dataset.darken = 0;
     }
 }
 
@@ -73,6 +74,7 @@ function setGridSize(size) {
 const randomColor = document.getElementById("random-color");
 const blackColor = document.getElementById("black-color");
 const ownColor = document.getElementById("own-color");
+const darkenColor = document.getElementById("darken-color");
 const colorPicker = document.getElementById("color-picker");
 const penColor = document.querySelectorAll('input[name="pen-color"]');
 for (i = 0; i < penColor.length; i++) {
@@ -83,15 +85,37 @@ function sketchOn(e) {
     e.target.style.transition = "background-color 1s";
     e.target.style.backgroundColor = currentPenColor;
     if (randomColor.checked == 1) {
-        setRandomPen();
+        setRandomColor();
     } else if (blackColor.checked == 1) {
         currentPenColor = "#000";
     } else if (ownColor.checked == 1) {
         currentPenColor = colorPicker.value;
+    } else if (darkenColor.checked == 1) {
+        let gridCellStyle = (window.getComputedStyle(e.target));
+        let currentColor = gridCellStyle.getPropertyValue("background-color");
+        e.target.dataset.darken++;
+        let darkeningStep = e.target.dataset.darken;
+        currentPenColor = darken(currentColor, darkeningStep)
+        console.log(darken(currentColor, darkeningStep));
+        if (darkeningStep === 9) {
+            return
+        }
     }
 }
 
-function setRandomPen() {
+function setRandomColor() {
     currentPenColor = "#" + Math.floor(Math.random()*16777215).toString(16);
 }
 
+function darken(currentGridColor, step) {
+    let color = currentGridColor;
+    let r = parseInt(color.substr(4, 3));
+    let g = parseInt(color.substr(9, 3));
+    let b = parseInt(color.substr(14, 3));
+
+    let newR = r - (r / (10 - step));
+    let newG = g - (g / (10 - step));
+    let newB = b - (b / (10 - step));
+    console.log(step);
+return "rgb" + "(" + newR.toString() + ", " + newG.toString() + ", " + newB.toString() + ")";
+}
