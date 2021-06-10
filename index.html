@@ -12,10 +12,24 @@
 </head>
 
 <body>
-
-    
-
-  <script src="js/script.js"></script>
+<div class="wrapper">
+  <header>
+    <h1>Etch-a-Sketch</h1>
+  </header>
+  <div class="grid-container"></div>
+  <div class="options-panel">
+    <button id="reset-button">Reset</button>
+    <button id="size-button">How big</button>
+    <input type="radio" id="black-color" name="pen-color" value="black" checked>
+    <label for="black-color">Black</label>
+    <input type="radio" id="random-color" name="pen-color" value="random">
+    <label for="random-color">Random</label>
+    <input type="radio" id="own-color" name="pen-color" value="owncolor">
+    <label for="own-color">Pick your own:</label>
+    <input type="color" id="color-picker" name="color-picker" value="#e66465">
+  </div>
+</div>
+<script src="js/script.js"></script>
 </body>
 
 </html>
