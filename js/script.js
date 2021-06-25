@@ -9,27 +9,29 @@ function createGrid(number) {
     const gridCell = document.createElement("div");
     gridContainer.appendChild(gridCell);
     gridCell.classList.add("grid-cell");
-    gridCell.addEventListener("click", activateSketch);
     gridCell.dataset.darken = 0;
     }
+    gridContainer.addEventListener("click", activateSketch);
 }
 
 let sketchActivated = "off";
 
 function activateSketch() {
     if (sketchActivated === "off") {
-        const gridCells = document.querySelectorAll(".grid-container > div");
-        for (i = 0; i < gridCells.length; i++) {
-            gridCells[i].addEventListener("mouseenter", sketchOn);
-            gridCells[i].addEventListener("mouseleave", sketchOn);
-        }
+        // const gridCells = document.querySelectorAll(".grid-container > div");
+        // for (i = 0; i < gridCells.length; i++) {
+        //     gridCells[i].addEventListener("mouseenter", sketchOn);
+        //     gridCells[i].addEventListener("mouseleave", sketchOn);
+        // }
+        gridContainer.addEventListener("mouseover", sketchOn)
         sketchActivated = "on";
     } else {
-        const gridCells = document.querySelectorAll(".grid-container > div");
-        for (i = 0; i < gridCells.length; i++) {
-            gridCells[i].removeEventListener("mouseenter", sketchOn);
-            gridCells[i].removeEventListener("mouseleave", sketchOn);
-        }
+        // const gridCells = document.querySelectorAll(".grid-container > div");
+        // for (i = 0; i < gridCells.length; i++) {
+        //     gridCells[i].removeEventListener("mouseenter", sketchOn);
+        //     gridCells[i].removeEventListener("mouseleave", sketchOn);
+        // }
+        gridContainer.removeEventListener("mouseover", sketchOn)
         sketchActivated = "off";
     }
 }
